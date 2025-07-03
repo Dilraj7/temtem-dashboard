@@ -137,36 +137,24 @@ fetch("data.json")
       );
 
       col.innerHTML = `
-        <div class="glass card h-100 text-center p-3">
-          <img src="${imgSrc}" loading="lazy" alt="${t.name}" 
-     class="img-fluid rounded mb-3"
-     onerror="this.src='img/placeholder.png'" />
-          <h5 class="fw-semibold">${t.name}</h5>
-          <div class="d-flex flex-wrap justify-content-center mt-2">
-            <span class="temtem-badge badge-luma">✨ ${currentChance}%</span>
-  <span class="temtem-badge badge-encounter">👁 ${(
-    t.encounteredPercent * 100
-  ).toFixed(2)}%</span>
-  <span class="temtem-badge badge-time badge-purple-50">⏱ 50%: ${r50}</span>
-  <span class="temtem-badge badge-time badge-purple-80">⏱ 80%: ${r80}</span>
-  <span class="temtem-badge badge-time badge-purple-9999">⏱ 99.99%: ${r9999}</span>
-          </div>
-        </div>
-      `;
-      container.appendChild(col);
-    });
-
-    col.innerHTML = `
-  <div class="temtem-flip-card">
-    <div class="temtem-flip-inner">
+  <div class="temtem-flip-card h-100">
+    <div class="temtem-flip-inner h-100">
       <div class="temtem-flip-front glass card h-100 text-center p-3">
-        <img src="${imgSrc}" loading="lazy" alt="${t.name}" class="img-fluid rounded mb-3" />
+        <img src="${imgSrc}" loading="lazy" alt="${t.name}" 
+             class="img-fluid rounded mb-3"
+             onerror="this.src='img/placeholder.png'" />
         <h5 class="fw-semibold">${t.name}</h5>
         <div class="d-flex flex-wrap justify-content-center mt-2">
-          <!-- badges habituels ici -->
+          <span class="temtem-badge badge-luma">✨ ${currentChance}%</span>
+          <span class="temtem-badge badge-encounter">👁 ${(
+            t.encounteredPercent * 100
+          ).toFixed(2)}%</span>
+          <span class="temtem-badge badge-time badge-purple-50">⏱ 50%: ${r50}</span>
+          <span class="temtem-badge badge-time badge-purple-80">⏱ 80%: ${r80}</span>
+          <span class="temtem-badge badge-time badge-purple-9999">⏱ 99.99%: ${r9999}</span>
         </div>
       </div>
-      <div class="temtem-flip-back glass card h-100 text-start p-3" data-temtem="${t.name}">
+      <div class="temtem-flip-back glass card h-100 text-start p-3" data-name="${t.name}">
         <div class="loading-info text-muted">⏳ Chargement...</div>
       </div>
     </div>
