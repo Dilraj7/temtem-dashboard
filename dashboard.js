@@ -133,7 +133,7 @@ fetch("data.json")
       col.className = "col-sm-6 col-md-4 col-lg-3";
       const formattedName =
         t.name.charAt(0).toUpperCase() + t.name.slice(1).toLowerCase();
-      const imgSrc = `https://temtem.wiki.gg/wiki/Special:FilePath/Luma${formattedName}_full_render.png`;
+      const imgSrc = `img/${t.name.toLowerCase()}.png`;
 
       const p = 1 / 2000; // 0.0005
       const avgInterval = 1; // 1 rencontre = 1 minute
@@ -151,9 +151,9 @@ fetch("data.json")
 
       col.innerHTML = `
         <div class="glass card h-100 text-center p-3">
-          <img src="${imgSrc}" loading="lazy" alt="${
-        t.name
-      }" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
+          <img src="${imgSrc}" loading="lazy" alt="${t.name}" 
+     class="img-fluid rounded mb-3"
+     onerror="this.src='img/placeholder.png'" />
           <h5 class="fw-semibold">${t.name}</h5>
           <div class="d-flex flex-wrap justify-content-center mt-2">
             <span class="temtem-badge badge-luma">✨ ${currentChance}%</span>
