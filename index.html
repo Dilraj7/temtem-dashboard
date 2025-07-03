@@ -23,32 +23,24 @@
       <div class="col-md-4"><div class="glass card p-3"><h6 class="mb-1 text-muted">Lumachance moyenne</h6><h3 id="avgLuma">-</h3></div></div>
     </div>
 
-    <!-- Graphiques -->
-    <div class="row g-3 mb-5">
-  <div class="col-md-6">
-    <div class="glass card h-100">
-      <div class="card-body">
-        <h5>📊 Rencontres par Temtem</h5>
-        <canvas id="encounterChart" height="180"></canvas>
-      </div>
-    </div>
+    <div class="row g-3">
+  <!-- 🃏 Aperçu Temtem à gauche -->
+  <div class="col-md-8">
+    <div id="temtemCards" class="row g-3"></div>
   </div>
-  <div class="col-md-6">
+
+  <!-- 🍩 Donut top 5 à droite -->
+  <div class="col-md-4">
     <div class="glass card h-100">
       <div class="card-body">
-        <h5>🥇 Top 5 Lumachance</h5>
-        <canvas id="lumachanceChart" height="180"></canvas>
-        <div id="donutLegend" class="d-flex flex-wrap justify-content-center gap-3 mt-3"></div>
+        <h5 class="text-center">🥇 Top 5 Lumachance</h5>
+        <canvas id="lumachanceChart" height="160"></canvas>
+        <div id="donutLegend" class="d-flex flex-wrap justify-content-center gap-2 mt-3"></div>
       </div>
     </div>
   </div>
 </div>
 
-
-    <!-- Cartes par Temtem -->
-    <div class="mb-3"><h4 class="text-primary">Aperçu détaillé</h4></div>
-    <div id="temtemCards" class="row gy-4"></div>
-  </div>
 
   <script src="dashboard.js"></script>
 </body>

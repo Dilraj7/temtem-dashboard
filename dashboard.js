@@ -13,25 +13,6 @@ fetch("data.json")
 
     document.getElementById("avgLuma").textContent = avgLuma.toFixed(2) + " %";
 
-    // Chart: rencontres
-    new Chart(document.getElementById("encounterChart"), {
-      type: "bar",
-      data: {
-        labels: rows.map((t) => t.name),
-        datasets: [
-          {
-            label: "Rencontres",
-            data: rows.map((t) => t.encountered),
-            backgroundColor: "#64b5f6",
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-      },
-    });
-
     // Chart: top 5 lumachance
     const top5 = [...rows]
       .filter((t) => t.lumaChance !== undefined)

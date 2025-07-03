@@ -44,6 +44,10 @@ canvas {
   transform: scale(1.05);
 }
 
+#temtemCards .card {
+  min-height: 200px;
+}
+
 .temtem-badge {
   display: inline-block;
   font-size: 0.85rem;
@@ -66,3 +70,4 @@ canvas {
 .badge-time {
   background: #9b59b6;
 }
+
