@@ -104,19 +104,16 @@ canvas {
   perspective: 1000px;
   cursor: pointer;
 }
-
 .temtem-flip-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 0.8s;
   transform-style: preserve-3d;
+  transition: transform 0.8s;
 }
-
 .temtem-flip-card.flipped .temtem-flip-inner {
   transform: rotateY(180deg);
 }
-
 .temtem-flip-front,
 .temtem-flip-back {
   position: absolute;
@@ -125,10 +122,10 @@ canvas {
   backface-visibility: hidden;
   border-radius: inherit;
 }
-
 .temtem-flip-back {
   transform: rotateY(180deg);
   overflow-y: auto;
 }
+
 
 
