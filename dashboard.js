@@ -11,7 +11,11 @@ fetch("data.json")
       const s = totalSeconds % 60;
       return [h, m, s].map((v) => String(v).padStart(2, "0")).join(":");
     }
-
+function estimateTime(p, chanceTarget, avgIntervalMinutes = 1) {
+  if (!p || p <= 0 || p >= 1) return Infinity;
+  const attempts = Math.log(1 - chanceTarget) / Math.log(1 - p);
+  return Math.round(attempts * avgIntervalMinutes);
+}
     // Global stats
     document.getElementById("totalTemtems").textContent = rows.length;
     const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
