@@ -1,0 +1,13 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
