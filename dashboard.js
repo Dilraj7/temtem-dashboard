@@ -68,7 +68,7 @@ function getLumaChancePercent(n, p = 1 / 2000) {
   return (probability * 100).toFixed(2);
 }
 
-function estimateRemainingTime(n, targetProb, encounterRate = 1, p = 1 / 2000) {
+function getEstimatedTimeRemaining(n, targetProb, encounterRate = 1, p = 1 / 2000) {
   const totalRequired = Math.log(1 - targetProb) / Math.log(1 - p);
   const remaining = Math.max(0, totalRequired - n);
   return Math.round(remaining * encounterRate); // minutes
