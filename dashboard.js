@@ -3,6 +3,18 @@ fetch("data.json")
   .then((data) => {
     const rows = data.rows;
 
+    // Calculate time to Luma for each Temtem
+function formatTime(minutesTotal) {
+  const totalSeconds = Math.floor(minutesTotal * 60);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return [hours, minutes, seconds]
+    .map(unit => String(unit).padStart(2, '0'))
+    .join(':');
+}
+
     // Global stats
     document.getElementById("totalTemtems").textContent = rows.length;
     const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
@@ -85,9 +97,7 @@ fetch("data.json")
             <span class="temtem-badge badge-encounter">👁 ${(
               t.encounteredPercent * 100
             ).toFixed(2)}%</span>
-            <span class="temtem-badge badge-time">⏱ ${Math.round(
-              t.timeToLuma / 60
-            )} min</span>
+            <span class="temtem-badge badge-time">⏱ ${formatTime(t.timeToLuma)}</span>
           </div>
         </div>
       `;
