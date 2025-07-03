@@ -155,6 +155,23 @@ fetch("data.json")
       `;
       container.appendChild(col);
     });
+
+    col.innerHTML = `
+  <div class="temtem-flip-card">
+    <div class="temtem-flip-inner">
+      <div class="temtem-flip-front glass card h-100 text-center p-3">
+        <img src="${imgSrc}" loading="lazy" alt="${t.name}" class="img-fluid rounded mb-3" />
+        <h5 class="fw-semibold">${t.name}</h5>
+        <div class="d-flex flex-wrap justify-content-center mt-2">
+          <!-- badges habituels ici -->
+        </div>
+      </div>
+      <div class="temtem-flip-back glass card h-100 text-start p-3" data-temtem="${t.name}">
+        <div class="loading-info text-muted">⏳ Chargement...</div>
+      </div>
+    </div>
+  </div>
+`;
     col.querySelector(".temtem-flip-card").addEventListener("click", function () {
   this.classList.toggle("flipped");
 
@@ -215,19 +232,4 @@ function sortTemtems(field, order) {
   cards.forEach((card) => cardsContainer.appendChild(card));
 }
 
-col.innerHTML = `
-  <div class="temtem-flip-card">
-    <div class="temtem-flip-inner">
-      <div class="temtem-flip-front glass card h-100 text-center p-3">
-        <img src="${imgSrc}" loading="lazy" alt="${t.name}" class="img-fluid rounded mb-3" />
-        <h5 class="fw-semibold">${t.name}</h5>
-        <div class="d-flex flex-wrap justify-content-center mt-2">
-          <!-- badges habituels ici -->
-        </div>
-      </div>
-      <div class="temtem-flip-back glass card h-100 text-start p-3" data-temtem="${t.name}">
-        <div class="loading-info text-muted">⏳ Chargement...</div>
-      </div>
-    </div>
-  </div>
-`;
+
