@@ -9,7 +9,7 @@ fetch('data.json')
     document.getElementById('totalEncounters').textContent = totalEncounters;
 
     const avgLuma = (
-      rows.reduce((sum, t) => sum + (t.lumachance || 0), 0) / rows.length
+      rows.reduce((sum, t) => sum + (t.lumaChance || 0), 0) / rows.length
     ).toFixed(1);
     document.getElementById('avgLuma').textContent = avgLuma + " %";
 
@@ -35,16 +35,16 @@ fetch('data.json')
 
     // --- Graphique Lumachance top 5 ---
     const top5 = [...rows]
-      .filter(t => t.lumachance !== undefined)
-      .sort((a, b) => b.lumachance - a.lumachance)
-      .slice(0, 5);
+      .filter(t => t.lumaChance !== undefined)
+    .sort((a, b) => b.lumaChance - a.lumaChance)
+    .map(t => t.lumaChance)
 
     new Chart(document.getElementById('lumachanceChart'), {
       type: 'doughnut',
       data: {
         labels: top5.map(t => t.name),
         datasets: [{
-          data: top5.map(t => t.lumachance),
+          data: top5.map(t => t.lumaChance),
           backgroundColor: ['#4dd0e1', '#81c784', '#ffd54f', '#ba68c8', '#ff8a65']
         }]
       },
