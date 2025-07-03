@@ -41,7 +41,13 @@ fetch("data.json")
     new Chart(document.getElementById("lumachanceChart"), {
       type: "doughnut",
       data: {
-        labels: top5.map((t) => t.name),
+        labels: top5.map((t) => {
+          const name = t.name;
+          const formattedName =
+            name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+          const imgURL = `https://temtem.wiki.gg/wiki/Special:FilePath/Luma${formattedName}_full_render.png`;
+          return `${name}  |  ${imgURL}`; // on encode les 2 infos ici
+        }),
         datasets: [
           {
             data: top5.map((t) => t.lumaChance * 100),
@@ -58,30 +64,67 @@ fetch("data.json")
       options: {
         responsive: true,
         plugins: {
-          legend: { position: "bottom" },
+          legend: {
+            position: "bottom",
+            labels: {
+              generateLabels: function (chart) {
+                const data = chart.data;
+                return data.labels.map((label, i) => {
+                  const [name, imgURL] = label.split("|").map((s) => s.trim());
+                  const backgroundColor = data.datasets[0].backgroundColor[i];
+
+                  return {
+                    text: name,
+                    fillStyle: backgroundColor,
+                    strokeStyle: backgroundColor,
+                    lineWidth: 1,
+                    index: i,
+                    datasetIndex: 0,
+                    hidden: false,
+                    pointStyle: new Image(),
+                    // image preview
+                    render: () => {
+                      const img = new Image();
+                      img.src = imgURL;
+                      img.width = 20;
+                      img.height = 20;
+                      return img;
+                    },
+                  };
+                });
+              },
+            },
+          },
         },
       },
     });
 
-function getLumaChancePercent(n, p = 1 / 2000) {
-  const probability = 1 - Math.pow(1 - p, n);
-  return (probability * 100).toFixed(2);
-}
+    function getLumaChancePercent(n, p = 1 / 2000) {
+      const probability = 1 - Math.pow(1 - p, n);
+      return (probability * 100).toFixed(2);
+    }
 
-function getEstimatedTimeRemaining(n, targetProb, encounterRate = 1, p = 1 / 2000) {
-  const totalRequired = Math.log(1 - targetProb) / Math.log(1 - p);
-  const remaining = Math.max(0, totalRequired - n);
-  return Math.round(remaining * encounterRate); // minutes
-}
+    function getEstimatedTimeRemaining(
+      n,
+      targetProb,
+      encounterRate = 1,
+      p = 1 / 2000
+    ) {
+      const totalRequired = Math.log(1 - targetProb) / Math.log(1 - p);
+      const remaining = Math.max(0, totalRequired - n);
+      return Math.round(remaining * encounterRate); // minutes
+    }
 
-function formatTime(minutes) {
-  const sec = Math.floor(minutes * 60);
-  const h = Math.floor(sec / 3600);
-  const m = Math.floor((sec % 3600) / 60);
-  const s = sec % 60;
-  return `${h}h ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s`;
-}
-
+    function formatTime(minutes) {
+      const sec = Math.floor(minutes * 60);
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      return `${h}h ${String(m).padStart(2, "0")}m ${String(s).padStart(
+        2,
+        "0"
+      )}s`;
+    }
 
     // Cartes Temtem
     const container = document.getElementById("temtemCards");
@@ -96,9 +139,15 @@ function formatTime(minutes) {
       const avgInterval = 1; // 1 rencontre = 1 minute
       const encounters = t.encountered;
       const currentChance = getLumaChancePercent(t.encountered);
-      const r50 = formatTime(getEstimatedTimeRemaining(encounters, 0.5, avgInterval, p));
-const r80 = formatTime(getEstimatedTimeRemaining(encounters, 0.8, avgInterval, p));
-const r9999 = formatTime(getEstimatedTimeRemaining(encounters, 0.9999, avgInterval, p));
+      const r50 = formatTime(
+        getEstimatedTimeRemaining(encounters, 0.5, avgInterval, p)
+      );
+      const r80 = formatTime(
+        getEstimatedTimeRemaining(encounters, 0.8, avgInterval, p)
+      );
+      const r9999 = formatTime(
+        getEstimatedTimeRemaining(encounters, 0.9999, avgInterval, p)
+      );
 
       col.innerHTML = `
         <div class="glass card h-100 text-center p-3">
@@ -107,7 +156,7 @@ const r9999 = formatTime(getEstimatedTimeRemaining(encounters, 0.9999, avgInterv
       }" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
           <h5 class="fw-semibold">${t.name}</h5>
           <div class="d-flex flex-wrap justify-content-center mt-2">
-            <span class="temtem-badge badge-luma">✨ Chance actuelle: ${currentChance}%</span>
+            <span class="temtem-badge badge-luma">✨ ${currentChance}%</span>
   <span class="temtem-badge badge-encounter">👁 ${(
     t.encounteredPercent * 100
   ).toFixed(2)}%</span>
