@@ -99,3 +99,29 @@ canvas {
 .badge-purple-9999:hover {
   background-color: #4c0d8f;
 }
+
+.temtem-flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+.temtem-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.temtem-flip-card.flipped .temtem-flip-inner {
+  transform: rotateY(180deg);
+}
+.temtem-flip-front,
+.temtem-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.temtem-flip-back {
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}

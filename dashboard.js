@@ -155,6 +155,37 @@ fetch("data.json")
       `;
       container.appendChild(col);
     });
+    col.querySelector(".temtem-flip-card").addEventListener("click", function () {
+  this.classList.toggle("flipped");
+
+  const back = this.querySelector(".temtem-flip-back");
+  const name = back.dataset.temtem;
+
+  // ⚠️ vérifie si on a déjà chargé
+  if (!back.dataset.loaded) {
+    fetch(`https://temtem-api.mael.tech/api/temtems?names=${encodeURIComponent(name)}&weaknesses=true`)
+      .then(res => res.json())
+      .then(([tem]) => {
+        const types = tem.types.map(type => `<span class="badge bg-secondary me-1">${type}</span>`).join('');
+        const trivia = tem.trivia?.slice(0, 2).map(t => `• ${t}`).join('<br>') || "Aucune anecdote trouvée.";
+
+        back.innerHTML = `
+          <h6 class="fw-bold mb-2">📘 Détails</h6>
+          <p><strong>Numéro :</strong> ${tem.number}</p>
+          <p><strong>Types :</strong> ${types}</p>
+          <p><strong>Catch Rate :</strong> ${tem.catchRate}</p>
+          <p><strong>Genre :</strong> ♂ ${tem.genderRatio.male}% / ♀ ${tem.genderRatio.female}%</p>
+          <p><strong>Temps d’éclosion :</strong> ${tem.hatchMins} min</p>
+          <p><strong>💡 Trivia :</strong><br>${trivia}</p>
+        `;
+        back.dataset.loaded = true;
+      })
+      .catch(() => {
+        back.innerHTML = "<p class='text-danger'>Erreur de chargement ❌</p>";
+      });
+  }
+});
+
   });
 
 function sortTemtems(field, order) {
@@ -183,3 +214,20 @@ function sortTemtems(field, order) {
   // Réorganise les cartes dans l’ordre
   cards.forEach((card) => cardsContainer.appendChild(card));
 }
+
+col.innerHTML = `
+  <div class="temtem-flip-card">
+    <div class="temtem-flip-inner">
+      <div class="temtem-flip-front glass card h-100 text-center p-3">
+        <img src="${imgSrc}" loading="lazy" alt="${t.name}" class="img-fluid rounded mb-3" />
+        <h5 class="fw-semibold">${t.name}</h5>
+        <div class="d-flex flex-wrap justify-content-center mt-2">
+          <!-- badges habituels ici -->
+        </div>
+      </div>
+      <div class="temtem-flip-back glass card h-100 text-start p-3" data-temtem="${t.name}">
+        <div class="loading-info text-muted">⏳ Chargement...</div>
+      </div>
+    </div>
+  </div>
+`;
