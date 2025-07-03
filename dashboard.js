@@ -4,18 +4,23 @@ fetch("data.json")
     const rows = data.rows;
 
     // Calculate time to Luma for each Temtem
-    function formatTime(minutesTotal) {
-      const totalSeconds = Math.floor(minutesTotal * 60);
-      const h = Math.floor(totalSeconds / 3600);
-      const m = Math.floor((totalSeconds % 3600) / 60);
-      const s = totalSeconds % 60;
-      return [h, m, s].map((v) => String(v).padStart(2, "0")).join(":");
+    function formatTime(minutes) {
+      const sec = Math.floor(minutes * 60);
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      return `${h}h ${String(m).padStart(2, "0")}m ${String(s).padStart(
+        2,
+        "0"
+      )}s`;
     }
-function estimateTime(p, chanceTarget, avgIntervalMinutes = 1) {
-  if (!p || p <= 0 || p >= 1) return Infinity;
-  const attempts = Math.log(1 - chanceTarget) / Math.log(1 - p);
-  return Math.round(attempts * avgIntervalMinutes);
-}
+
+    function estimateTime(p, chanceTarget, avgIntervalMinutes = 1) {
+      if (!p || p <= 0 || p >= 1) return Infinity;
+      const attempts = Math.log(1 - chanceTarget) / Math.log(1 - p);
+      return Math.round(attempts * avgIntervalMinutes);
+    }
+
     // Global stats
     document.getElementById("totalTemtems").textContent = rows.length;
     const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
@@ -76,6 +81,22 @@ function estimateTime(p, chanceTarget, avgIntervalMinutes = 1) {
       },
     });
 
+    function getLumaChancePercent(n, p = 1 / 2000) {
+      const probability = 1 - Math.pow(1 - p, n);
+      return (probability * 100).toFixed(2); // Retourne un pourcentage avec 2 décimales
+    }
+
+    function getEstimatedTimeRemaining(
+      n,
+      targetProb = 0.9,
+      p = 1 / 2000,
+      interval = 1
+    ) {
+      const totalRequired = Math.log(1 - targetProb) / Math.log(1 - p);
+      const remainingEncounters = Math.max(0, totalRequired - n);
+      return Math.round(remainingEncounters * interval);
+    }
+
     // Cartes Temtem
     const container = document.getElementById("temtemCards");
     rows.forEach((t) => {
@@ -85,8 +106,19 @@ function estimateTime(p, chanceTarget, avgIntervalMinutes = 1) {
         t.name.charAt(0).toUpperCase() + t.name.slice(1).toLowerCase();
       const imgSrc = `https://temtem.wiki.gg/wiki/Special:FilePath/Luma${formattedName}_full_render.png`;
 
-      const p = t.lumaChance || 1 / 2000;
+      const p = 1 / 2000; // 0.0005
       const avgInterval = t.timeToLuma / t.encountered || 1;
+
+      const currentChance = getLumaChancePercent(t.encountered);
+      const r50 = formatTime(
+        getEstimatedTimeRemaining(t.encountered, 0.5, p, avgInterval)
+      );
+      const r80 = formatTime(
+        getEstimatedTimeRemaining(t.encountered, 0.8, p, avgInterval)
+      );
+      const r9999 = formatTime(
+        getEstimatedTimeRemaining(t.encountered, 0.9999, p, avgInterval)
+      );
 
       const t50 = formatTime(estimateTime(p, 0.5, avgInterval));
       const t80 = formatTime(estimateTime(p, 0.8, avgInterval));
@@ -95,17 +127,23 @@ function estimateTime(p, chanceTarget, avgIntervalMinutes = 1) {
       col.innerHTML = `
         <div class="glass card h-100 text-center p-3">
           <img src="${imgSrc}" loading="lazy" alt="${
-              t.name
-            }" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
+        t.name
+      }" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
           <h5 class="fw-semibold">${t.name}</h5>
           <div class="d-flex flex-wrap justify-content-center mt-2">
-            <span class="temtem-badge badge-luma">🌟 ${(p * 100).toFixed(2)}%</span>
+            <span class="temtem-badge badge-luma">🌟 ${(p * 100).toFixed(
+              2
+            )}%</span>
             <span class="temtem-badge badge-encounter">👁 ${(
               t.encounteredPercent * 100
             ).toFixed(2)}%</span>
-            <span class="temtem-badge badge-time">⏱ 50%: ${t50}</span>
-            <span class="temtem-badge badge-time">⏱ 80%: ${t80}</span>
-            <span class="temtem-badge badge-time">⏱ 99.99%: ${t9999}</span>
+            <span class="temtem-badge badge-luma">✨ Chance actuelle: ${currentChance}%</span>
+  <span class="temtem-badge badge-encounter">👁 ${(
+    t.encounteredPercent * 100
+  ).toFixed(2)}%</span>
+  <span class="temtem-badge badge-time">⏱ 50%: ${r50}</span>
+  <span class="temtem-badge badge-time">⏱ 80%: ${r80}</span>
+  <span class="temtem-badge badge-time">⏱ 99.99%: ${r9999}</span>
           </div>
         </div>
       `;
