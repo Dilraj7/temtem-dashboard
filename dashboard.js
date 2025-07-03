@@ -1,63 +1,51 @@
 fetch('data.json')
-  .then(response => response.json())
+  .then(res => res.json())
   .then(data => {
-    const labels = data.rows.map(item => item.name);
-    const values = data.rows.map(item => item.encountered);
+    const rows = data.rows;
 
-    const ctx = document.getElementById('myChart').getContext('2d');
-    new Chart(ctx, {
+    // -----------------------
+    // Chart 1 – Rencontres
+    // -----------------------
+    const names = rows.map(t => t.name);
+    const encounters = rows.map(t => t.encountered);
+
+    new Chart(document.getElementById('encounterChart'), {
       type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Nombre de rencontres',
-          data: values,
-          backgroundColor: 'rgba(75, 192, 192, 0.6)'
-        }]
-      }
-    });
-  });
-
-  fetch('data.json')
-  .then(res => res.json())
-  .then(data => {
-    // Chart.js ici...
-
-    // Remplissage de la table
-    const tbody = document.querySelector('#temtemTable tbody');
-    data.rows.forEach(row => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${row.name}</td><td>${row.encountered}</td><td>${row.rarity}</td>`;
-      tbody.appendChild(tr);
-    });
-
-    // Initialisation DataTable
-    $('#temtemTable').DataTable();
-  });
-
-  fetch('data.json')
-  .then(res => res.json())
-  .then(data => {
-    // EXEMPLE : data.rows = [{ name, encountered, rarity, lumachance }, ...]
-
-    // Top 5 Temtems avec la plus haute lumachance
-    const top5 = [...data.rows]
-      .filter(t => t.lumachance) // au cas où
-      .sort((a, b) => b.lumachance - a.lumachance)
-      .slice(0, 5);
-
-    const names = top5.map(t => t.name);
-    const luck = top5.map(t => t.lumachance);
-
-    const ctx = document.getElementById('lumachanceChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'doughnut',
       data: {
         labels: names,
         datasets: [{
+          label: 'Nombre de rencontres',
+          data: encounters,
+          backgroundColor: '#64b5f6'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // -----------------------
+    // Chart 2 – Top 5 Lumachance
+    // -----------------------
+    const top5 = [...rows]
+      .filter(t => t.lumachance !== undefined)
+      .sort((a, b) => b.lumachance - a.lumachance)
+      .slice(0, 5);
+
+    const topNames = top5.map(t => t.name);
+    const topLuck = top5.map(t => t.lumachance);
+
+    new Chart(document.getElementById('lumachanceChart'), {
+      type: 'doughnut',
+      data: {
+        labels: topNames,
+        datasets: [{
           label: 'Lumachance (%)',
-          data: luck,
-          backgroundColor: ['#64b5f6','#4dd0e1','#81c784','#ffd54f','#ff8a65']
+          data: topLuck,
+          backgroundColor: ['#4dd0e1', '#81c784', '#ffd54f', '#ba68c8', '#ff8a65']
         }]
       },
       options: {

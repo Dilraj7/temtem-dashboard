@@ -4,63 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Temtem</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" />
-  <!-- Bootstrap -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="bg-light">
+
   <div class="container py-5">
-    <div class="text-center mb-4">
-      <h1 class="display-5 fw-bold text-primary">Dashboard Temtem</h1>
-      <p class="lead">Visualisez les données de votre fichier JSON en un clin d'œil</p>
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-semibold text-gradient">Temtem Dashboard</h1>
+      <p class="lead">Une vue claire de vos données préférées</p>
     </div>
 
-    <div class="card shadow-sm">
+    <!-- Graphique Rencontres -->
+    <div class="glass card mb-4">
       <div class="card-body">
-        <canvas id="myChart"></canvas>
+        <h5 class="card-title">Rencontres par Temtem</h5>
+        <canvas id="encounterChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Graphique Lumachance -->
+    <div class="glass card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Top 5 Temtems – Lumachance (%)</h5>
+        <canvas id="lumachanceChart"></canvas>
       </div>
     </div>
   </div>
-  <table id="temtemTable" class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Rencontres</th>
-      <th>Rareté</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-    <div class="container mt-4">
-        <div class="row">
-        <div class="col-md-6">
-            <h2>Statistiques</h2>
-            <p>Nombre total de Temtem : <span id="totalTemtem">0</span></p>
-            <p>Rareté moyenne : <span id="averageRarity">0</span></p>
-        </div>
-        <div class="col-md-6">
-            <h2>Graphiques</h2>
-            <canvas id="rarityChart"></canvas>
-        </div>
-        </div>  
-        <div class="card shadow-sm mt-4">
-  <div class="card-body">
-    <h5 class="card-title">Top 5 Lumachance</h5>
-    <canvas id="lumachanceChart"></canvas>
-  </div>
-</div>
-
 
   <script src="dashboard.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 </body>
 </html>

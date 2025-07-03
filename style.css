@@ -1,55 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #f0f0f0;
-  }
-
-  .card {
-    background-color: #1e1e1e;
-  }
-
-  .table {
-    color: #ddd;
-  }
-}
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: #f0f0f0;
-    color: #121212;
-  }
-
-  .card {
-    background-color: #ffffff;
-  }
-
-  .table {
-    color: #333;
-  }
-}
-
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #f7f9fb, #e3edf7);
+  background: linear-gradient(to right, #f8f9fa, #e7f0f7);
   color: #333;
 }
 
-.card {
+.text-gradient {
+  background: linear-gradient(to right, #42a5f5, #7e57c2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass.card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.75);
+  border: none;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
 
-h1 {
-  font-weight: 600;
-  color: #1e88e5;
-}
-
-.table {
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
+canvas {
+  max-width: 100%;
 }
