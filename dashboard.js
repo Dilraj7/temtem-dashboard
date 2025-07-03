@@ -220,5 +220,6 @@ function sortTemtems(field, order) {
   // Réorganise les cartes dans l’ordre
   cards.forEach((card) => cardsContainer.appendChild(card));
 }
+}); // ← pour clore le .then((data) => { ... })
 
 
