@@ -164,7 +164,7 @@ fetch("data.json")
   this.classList.toggle("flipped");
 
   const back = this.querySelector(".temtem-flip-back");
-  const name = back.dataset.temtem;
+const name = back.dataset.name;
 
   // ⚠️ vérifie si on a déjà chargé
   if (!back.dataset.loaded) {
@@ -182,6 +182,7 @@ fetch("data.json")
           <p><strong>Genre :</strong> ♂ ${tem.genderRatio.male}% / ♀ ${tem.genderRatio.female}%</p>
           <p><strong>Temps d’éclosion :</strong> ${tem.hatchMins} min</p>
           <p><strong>💡 Trivia :</strong><br>${trivia}</p>
+          <p class="text-muted mt-2">↩️ Clique pour revenir</p>
         `;
         back.dataset.loaded = true;
       })
