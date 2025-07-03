@@ -147,9 +147,9 @@ fetch("data.json")
   <span class="temtem-badge badge-encounter">👁 ${(
     t.encounteredPercent * 100
   ).toFixed(2)}%</span>
-  <span class="temtem-badge badge-time">⏱ 50%: ${r50}</span>
-  <span class="temtem-badge badge-time">⏱ 80%: ${r80}</span>
-  <span class="temtem-badge badge-time">⏱ 99.99%: ${r9999}</span>
+  <span class="temtem-badge badge-time badge-purple-50">⏱ 50%: ${r50}</span>
+  <span class="temtem-badge badge-time badge-purple-80">⏱ 80%: ${r80}</span>
+  <span class="temtem-badge badge-time badge-purple-9999">⏱ 99.99%: ${r9999}</span>
           </div>
         </div>
       `;
@@ -157,27 +157,29 @@ fetch("data.json")
     });
   });
 
-  function sortTemtems(field, order) {
+function sortTemtems(field, order) {
   const cardsContainer = document.getElementById("temtemCards");
   const cards = Array.from(cardsContainer.children);
 
   cards.sort((a, b) => {
     const getValue = (card, type) => {
-      if (type === 'encountered') {
+      if (type === "encountered") {
         const match = card.innerHTML.match(/👁 (\d+(?:\.\d+)?)/);
         return parseFloat(match?.[1]) || 0;
       }
-      if (type === 'chance') {
-        const match = card.innerHTML.match(/Chance actuelle: (\d+(?:\.\d+)?)/);
+      if (type === "chance") {
+        const match = card.innerHTML.match(
+          /Chance actuelle:\s*(\d+(?:\.\d+)?)/
+        );
         return parseFloat(match?.[1]) || 0;
       }
     };
 
     const valA = getValue(a, field);
     const valB = getValue(b, field);
-    return order === 'asc' ? valA - valB : valB - valA;
+    return order === "asc" ? valA - valB : valB - valA;
   });
 
   // Réorganise les cartes dans l’ordre
-  cards.forEach(card => cardsContainer.appendChild(card));
+  cards.forEach((card) => cardsContainer.appendChild(card));
 }

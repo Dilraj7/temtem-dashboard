@@ -9,6 +9,17 @@ body {
   color: #ffcc70;
 }
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#lumachanceChart {
+  margin: 0 auto;
+}
+
+
 h6, h5, h3 {
   color: #f1f1f1;
 }
@@ -71,3 +82,20 @@ canvas {
   background: #9b59b6;
 }
 
+.badge-purple-50 {
+  background-color: #e0bbff;
+  color: #32124f;
+}
+
+.badge-purple-80 {
+  background-color: #a278f4;
+  color: white;
+}
+
+.badge-purple-9999 {
+  background-color: #5e1ab2;
+  color: white;
+}
+.badge-purple-9999:hover {
+  background-color: #4c0d8f;
+}
