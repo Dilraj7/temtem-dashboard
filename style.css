@@ -1,23 +1,34 @@
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #f5f7fa, #e3edf7);
-  color: #333;
+  background: radial-gradient(circle at top left, #2c3e50, #1c1f26);
+  color: #ffffff;
+}
+
+
+.card-title {
+  color: #ffcc70;
+}
+
+h5, h3 {
+  color: #f1f1f1;
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #42a5f5, #7e57c2);
+  background: linear-gradient(to right, #f39c12, #e74c3c);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+
 .glass.card {
-  backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.75);
-  border: none;
+  background: rgba(44, 62, 80, 0.85); /* fond foncé semi-transparent */
+  backdrop-filter: blur(12px);
   border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
+
 
 canvas {
   max-width: 100%;

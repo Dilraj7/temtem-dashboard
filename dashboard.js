@@ -41,7 +41,7 @@ fetch('data.json')
         labels: top5.map(t => t.name),
         datasets: [{
           data: top5.map(t => t.lumaChance),
-          backgroundColor: ['#4dd0e1', '#81c784', '#ffd54f', '#ba68c8', '#ff8a65']
+          backgroundColor: ['#e67e22', '#f1c40f', '#1abc9c', '#9b59b6', '#e74c3c']
         }]
       },
       options: {
