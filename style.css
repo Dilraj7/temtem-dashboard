@@ -32,7 +32,7 @@ h6, h5, h3 {
 
 canvas {
   max-width: 100%;
-  height: auto;
+  height: auto !important;
 }
 
 #temtemCards img {

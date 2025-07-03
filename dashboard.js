@@ -93,7 +93,7 @@ function formatTime(minutes) {
       const imgSrc = `https://temtem.wiki.gg/wiki/Special:FilePath/Luma${formattedName}_full_render.png`;
 
       const p = 1 / 2000; // 0.0005
-      const avgInterval = t.timeToLuma / t.encountered || 1;
+      const avgInterval = 1; // 1 rencontre = 1 minute
       const encounters = t.encountered;
       const currentChance = getLumaChancePercent(t.encountered);
       const r50 = formatTime(getEstimatedTimeRemaining(encounters, 0.5, avgInterval, p));
