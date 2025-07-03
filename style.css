@@ -9,7 +9,7 @@ body {
   color: #ffcc70;
 }
 
-h5, h3 {
+h6, h5, h3 {
   color: #f1f1f1;
 }
 
@@ -42,4 +42,27 @@ canvas {
 }
 #temtemCards img:hover {
   transform: scale(1.05);
+}
+
+.temtem-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  margin: 4px 4px 0 0;
+  border-radius: 12px;
+  color: #fff;
+  background: #6c757d; /* badge neutre par défaut */
+}
+
+.badge-luma {
+  background: #f39c12;
+}
+
+.badge-encounter {
+  background: #3498db;
+}
+
+.badge-time {
+  background: #9b59b6;
 }

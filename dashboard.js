@@ -78,15 +78,17 @@ fetch("data.json")
         t.name
       }" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
           <h5 class="fw-semibold">${t.name}</h5>
-          <p class="mb-1 text-muted">
-  Lumachance: <strong>${(t.lumaChance * 100).toFixed(2)}%</strong>
-</p>
-          <p class="mb-1 text-muted">Rencontres: <strong>${(
-            t.encounteredPercent * 100
-          ).toFixed(2)}%</strong></p>
-          <p class="mb-0 text-muted">Temps moyen: <strong>${Math.round(
-            t.timeToLuma / 60
-          )} min</strong></p>
+          <div class="d-flex flex-wrap justify-content-center mt-2">
+            <span class="temtem-badge badge-luma">🌟 ${(t.lumaChance * 100).toFixed(
+              2
+            )}%</span>
+            <span class="temtem-badge badge-encounter">👁 ${(
+              t.encounteredPercent * 100
+            ).toFixed(2)}%</span>
+            <span class="temtem-badge badge-time">⏱ ${Math.round(
+              t.timeToLuma / 60
+            )} min</span>
+          </div>
         </div>
       `;
       container.appendChild(col);
