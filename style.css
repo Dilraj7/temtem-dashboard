@@ -100,6 +100,15 @@ canvas {
   background-color: #4c0d8f;
 }
 
+.temtem-flip-card,
+.temtem-flip-inner,
+.temtem-flip-front,
+.temtem-flip-back,
+.temtem-flip-card .card {
+  height: 100%;
+}
+
+
 .temtem-flip-card {
   perspective: 1000px;
   cursor: pointer;
