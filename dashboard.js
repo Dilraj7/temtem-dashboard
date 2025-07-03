@@ -17,3 +17,20 @@ fetch('data.json')
       }
     });
   });
+
+  fetch('data.json')
+  .then(res => res.json())
+  .then(data => {
+    // Chart.js ici...
+
+    // Remplissage de la table
+    const tbody = document.querySelector('#temtemTable tbody');
+    data.rows.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${row.name}</td><td>${row.encountered}</td><td>${row.rarity}</td>`;
+      tbody.appendChild(tr);
+    });
+
+    // Initialisation DataTable
+    $('#temtemTable').DataTable();
+  });

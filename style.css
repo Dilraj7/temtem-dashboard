@@ -11,3 +11,31 @@ canvas {
   max-width: 100%;
   height: auto;
 }
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #f0f0f0;
+  }
+
+  .card {
+    background-color: #1e1e1e;
+  }
+
+  .table {
+    color: #ddd;
+  }
+}
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #f0f0f0;
+    color: #121212;
+  }
+
+  .card {
+    background-color: #ffffff;
+  }
+
+  .table {
+    color: #333;
+  }
+}
