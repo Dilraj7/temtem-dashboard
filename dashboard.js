@@ -38,6 +38,30 @@ fetch("data.json")
       .sort((a, b) => b.lumaChance - a.lumaChance)
       .slice(0, 5);
 
+    // Build donut legend cards before creating the chart
+    const legendContainer = document.getElementById("donutLegend");
+    legendContainer.innerHTML = ""; // Vide au cas d'un refresh dynamique
+
+    top5.forEach((t, i) => {
+      const name = t.name;
+      const img = `img/${name.toLowerCase()}.png`; // tu utilises le dossier local
+
+      const card = document.createElement("div");
+      card.className = "d-flex align-items-center gap-2 glass p-2 rounded";
+      card.style.minWidth = '160px';
+
+      card.innerHTML = `
+        <img src="${img}" alt="${name}" width="36" height="36"
+            class="rounded" onerror="this.src='img/placeholder.png'" />
+        <div>
+          <strong>${name}</strong><br>
+          <small>${(t.lumaChance * 100).toFixed(2)}%</small>
+        </div>
+      `;
+
+      legendContainer.appendChild(card);
+    });
+
     new Chart(document.getElementById("lumachanceChart"), {
       type: "doughnut",
       data: {
@@ -64,37 +88,7 @@ fetch("data.json")
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            position: "bottom",
-            labels: {
-              generateLabels: function (chart) {
-                const data = chart.data;
-                return data.labels.map((label, i) => {
-                  const [name, imgURL] = label.split("|").map((s) => s.trim());
-                  const backgroundColor = data.datasets[0].backgroundColor[i];
-
-                  return {
-                    text: name,
-                    fillStyle: backgroundColor,
-                    strokeStyle: backgroundColor,
-                    lineWidth: 1,
-                    index: i,
-                    datasetIndex: 0,
-                    hidden: false,
-                    pointStyle: new Image(),
-                    // image preview
-                    render: () => {
-                      const img = new Image();
-                      img.src = imgURL;
-                      img.width = 20;
-                      img.height = 20;
-                      return img;
-                    },
-                  };
-                });
-              },
-            },
-          },
+          legend: { display: false },
         },
       },
     });
