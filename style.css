@@ -19,11 +19,16 @@ body {
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
-.card-title {
-  font-weight: 600;
-}
-
 canvas {
   max-width: 100%;
   height: auto;
+}
+
+#temtemCards img {
+  max-height: 120px;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+#temtemCards img:hover {
+  transform: scale(1.05);
 }
