@@ -29,7 +29,7 @@ fetch("data.json")
 
       const card = document.createElement("div");
       card.className = "d-flex align-items-center gap-2 glass p-2 rounded";
-      card.style.minWidth = '160px';
+      card.style.minWidth = "160px";
 
       card.innerHTML = `
         <img src="${img}" alt="${name}" width="36" height="36"
@@ -104,6 +104,18 @@ fetch("data.json")
     // Cartes Temtem
     const container = document.getElementById("temtemCards");
     rows.forEach((t) => {
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", function () {
+          const searchValue = this.value.toLowerCase();
+          const cards = document.querySelectorAll("#temtemCards .card");
+          cards.forEach((card) => {
+            const name = card.querySelector("h5")?.textContent.toLowerCase();
+            const visible = name.includes(searchValue);
+            card.parentElement.style.display = visible ? "" : "none";
+          });
+        });
+
       const col = document.createElement("div");
       col.className = "col-sm-6 col-md-4 col-lg-3";
       const formattedName =
@@ -144,3 +156,28 @@ fetch("data.json")
       container.appendChild(col);
     });
   });
+
+  function sortTemtems(field, order) {
+  const cardsContainer = document.getElementById("temtemCards");
+  const cards = Array.from(cardsContainer.children);
+
+  cards.sort((a, b) => {
+    const getValue = (card, type) => {
+      if (type === 'encountered') {
+        const match = card.innerHTML.match(/👁 (\d+(?:\.\d+)?)/);
+        return parseFloat(match?.[1]) || 0;
+      }
+      if (type === 'chance') {
+        const match = card.innerHTML.match(/Chance actuelle: (\d+(?:\.\d+)?)/);
+        return parseFloat(match?.[1]) || 0;
+      }
+    };
+
+    const valA = getValue(a, field);
+    const valB = getValue(b, field);
+    return order === 'asc' ? valA - valB : valB - valA;
+  });
+
+  // Réorganise les cartes dans l’ordre
+  cards.forEach(card => cardsContainer.appendChild(card));
+}
