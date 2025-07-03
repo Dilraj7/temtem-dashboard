@@ -96,19 +96,9 @@ function formatTime(minutes) {
       const avgInterval = t.timeToLuma / t.encountered || 1;
       const encounters = t.encountered;
       const currentChance = getLumaChancePercent(t.encountered);
-      const r50 = formatTime(
-        getEstimatedTimeRemaining(t.encountered, 0.5, p, avgInterval)
-      );
-      const r80 = formatTime(
-        getEstimatedTimeRemaining(t.encountered, 0.8, p, avgInterval)
-      );
-      const r9999 = formatTime(
-        getEstimatedTimeRemaining(t.encountered, 0.9999, p, avgInterval)
-      );
-
-      const t50 = formatTime(estimateTime(p, 0.5, avgInterval));
-      const t80 = formatTime(estimateTime(p, 0.8, avgInterval));
-      const t9999 = formatTime(estimateTime(p, 0.9999, avgInterval));
+      const r50 = formatTime(getEstimatedTimeRemaining(encounters, 0.5, avgInterval, p));
+const r80 = formatTime(getEstimatedTimeRemaining(encounters, 0.8, avgInterval, p));
+const r9999 = formatTime(getEstimatedTimeRemaining(encounters, 0.9999, avgInterval, p));
 
       col.innerHTML = `
         <div class="glass card h-100 text-center p-3">
