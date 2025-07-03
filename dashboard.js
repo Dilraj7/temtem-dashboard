@@ -3,24 +3,6 @@ fetch("data.json")
   .then((data) => {
     const rows = data.rows;
 
-    // Calculate time to Luma for each Temtem
-    function formatTime(minutes) {
-      const sec = Math.floor(minutes * 60);
-      const h = Math.floor(sec / 3600);
-      const m = Math.floor((sec % 3600) / 60);
-      const s = sec % 60;
-      return `${h}h ${String(m).padStart(2, "0")}m ${String(s).padStart(
-        2,
-        "0"
-      )}s`;
-    }
-
-    function estimateTime(p, chanceTarget, avgIntervalMinutes = 1) {
-      if (!p || p <= 0 || p >= 1) return Infinity;
-      const attempts = Math.log(1 - chanceTarget) / Math.log(1 - p);
-      return Math.round(attempts * avgIntervalMinutes);
-    }
-
     // Global stats
     document.getElementById("totalTemtems").textContent = rows.length;
     const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
@@ -81,21 +63,25 @@ fetch("data.json")
       },
     });
 
-    function getLumaChancePercent(n, p = 1 / 2000) {
-      const probability = 1 - Math.pow(1 - p, n);
-      return (probability * 100).toFixed(2); // Retourne un pourcentage avec 2 décimales
-    }
+function getLumaChancePercent(n, p = 1 / 2000) {
+  const probability = 1 - Math.pow(1 - p, n);
+  return (probability * 100).toFixed(2);
+}
 
-    function getEstimatedTimeRemaining(
-      n,
-      targetProb = 0.9,
-      p = 1 / 2000,
-      interval = 1
-    ) {
-      const totalRequired = Math.log(1 - targetProb) / Math.log(1 - p);
-      const remainingEncounters = Math.max(0, totalRequired - n);
-      return Math.round(remainingEncounters * interval);
-    }
+function estimateRemainingTime(n, targetProb, encounterRate = 1, p = 1 / 2000) {
+  const totalRequired = Math.log(1 - targetProb) / Math.log(1 - p);
+  const remaining = Math.max(0, totalRequired - n);
+  return Math.round(remaining * encounterRate); // minutes
+}
+
+function formatTime(minutes) {
+  const sec = Math.floor(minutes * 60);
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = sec % 60;
+  return `${h}h ${String(m).padStart(2, '0')}m ${String(s).padStart(2, '0')}s`;
+}
+
 
     // Cartes Temtem
     const container = document.getElementById("temtemCards");
@@ -108,7 +94,7 @@ fetch("data.json")
 
       const p = 1 / 2000; // 0.0005
       const avgInterval = t.timeToLuma / t.encountered || 1;
-
+      const encounters = t.encountered;
       const currentChance = getLumaChancePercent(t.encountered);
       const r50 = formatTime(
         getEstimatedTimeRemaining(t.encountered, 0.5, p, avgInterval)
@@ -131,12 +117,6 @@ fetch("data.json")
       }" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
           <h5 class="fw-semibold">${t.name}</h5>
           <div class="d-flex flex-wrap justify-content-center mt-2">
-            <span class="temtem-badge badge-luma">🌟 ${(p * 100).toFixed(
-              2
-            )}%</span>
-            <span class="temtem-badge badge-encounter">👁 ${(
-              t.encounteredPercent * 100
-            ).toFixed(2)}%</span>
             <span class="temtem-badge badge-luma">✨ Chance actuelle: ${currentChance}%</span>
   <span class="temtem-badge badge-encounter">👁 ${(
     t.encounteredPercent * 100
