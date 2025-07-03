@@ -34,3 +34,39 @@ fetch('data.json')
     // Initialisation DataTable
     $('#temtemTable').DataTable();
   });
+
+  fetch('data.json')
+  .then(res => res.json())
+  .then(data => {
+    // EXEMPLE : data.rows = [{ name, encountered, rarity, lumachance }, ...]
+
+    // Top 5 Temtems avec la plus haute lumachance
+    const top5 = [...data.rows]
+      .filter(t => t.lumachance) // au cas où
+      .sort((a, b) => b.lumachance - a.lumachance)
+      .slice(0, 5);
+
+    const names = top5.map(t => t.name);
+    const luck = top5.map(t => t.lumachance);
+
+    const ctx = document.getElementById('lumachanceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: names,
+        datasets: [{
+          label: 'Lumachance (%)',
+          data: luck,
+          backgroundColor: ['#64b5f6','#4dd0e1','#81c784','#ffd54f','#ff8a65']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  });

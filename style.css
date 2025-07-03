@@ -1,12 +1,4 @@
-body {
-  font-family: "Segoe UI", sans-serif;
-}
-
-.card {
-  border: none;
-  border-radius: 12px;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 canvas {
   max-width: 100%;
   height: auto;
@@ -38,4 +30,26 @@ canvas {
   .table {
     color: #333;
   }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f7f9fb, #e3edf7);
+  color: #333;
+}
+
+.card {
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+h1 {
+  font-weight: 600;
+  color: #1e88e5;
+}
+
+.table {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
 }
