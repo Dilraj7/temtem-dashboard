@@ -3,9 +3,17 @@ fetch('data.json')
   .then(data => {
     const rows = data.rows;
 
-    // -----------------------
-    // Chart 1 – Rencontres
-    // -----------------------
+    // --- Statistiques globales ---
+    document.getElementById('totalTemtems').textContent = rows.length;
+    const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
+    document.getElementById('totalEncounters').textContent = totalEncounters;
+
+    const avgLuma = (
+      rows.reduce((sum, t) => sum + (t.lumachance || 0), 0) / rows.length
+    ).toFixed(1);
+    document.getElementById('avgLuma').textContent = avgLuma + " %";
+
+    // --- Graphique des rencontres ---
     const names = rows.map(t => t.name);
     const encounters = rows.map(t => t.encountered);
 
@@ -14,46 +22,36 @@ fetch('data.json')
       data: {
         labels: names,
         datasets: [{
-          label: 'Nombre de rencontres',
+          label: 'Rencontres',
           data: encounters,
           backgroundColor: '#64b5f6'
         }]
       },
       options: {
         responsive: true,
-        plugins: {
-          legend: { display: false }
-        }
+        plugins: { legend: { display: false } }
       }
     });
 
-    // -----------------------
-    // Chart 2 – Top 5 Lumachance
-    // -----------------------
+    // --- Graphique Lumachance top 5 ---
     const top5 = [...rows]
       .filter(t => t.lumachance !== undefined)
       .sort((a, b) => b.lumachance - a.lumachance)
       .slice(0, 5);
 
-    const topNames = top5.map(t => t.name);
-    const topLuck = top5.map(t => t.lumachance);
-
     new Chart(document.getElementById('lumachanceChart'), {
       type: 'doughnut',
       data: {
-        labels: topNames,
+        labels: top5.map(t => t.name),
         datasets: [{
-          label: 'Lumachance (%)',
-          data: topLuck,
+          data: top5.map(t => t.lumachance),
           backgroundColor: ['#4dd0e1', '#81c784', '#ffd54f', '#ba68c8', '#ff8a65']
         }]
       },
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            position: 'bottom'
-          }
+          legend: { position: 'bottom' }
         }
       }
     });
