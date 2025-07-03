@@ -22,7 +22,7 @@ h6, h5, h3 {
 
 
 .glass.card {
-  background: rgba(44, 62, 80, 0.85); /* fond foncé semi-transparent */
+  background: rgba(40, 39, 52, 255); /* fond foncé semi-transparent */
   backdrop-filter: blur(12px);
   border-radius: 18px;
   color: #ffffff;
