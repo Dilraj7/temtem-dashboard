@@ -108,11 +108,15 @@ canvas {
   height: 100%;
 }
 
-
 .temtem-flip-card {
-  perspective: 1000px;
-  cursor: pointer;
+  position: relative;
+  min-height: 300px; /* ou ajuste selon ton contenu */
 }
+.temtem-flip-card .card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
 .temtem-flip-inner {
   position: relative;
   width: 100%;
