@@ -57,11 +57,14 @@ fetch('data.json')
     rows.forEach(t => {
       const col = document.createElement('div');
       col.className = 'col-sm-6 col-md-4 col-lg-3';
-      const imgSrc = `img/${t.name.toLowerCase()}.png`;
+      const formattedName = t.name.charAt(0).toUpperCase() + t.name.slice(1).toLowerCase();
+      const imgSrc = `https://temtem.wiki.gg/wiki/Special:FilePath/Luma${formattedName}_full_render.png`;
+
+
 
       col.innerHTML = `
         <div class="glass card h-100 text-center p-3">
-          <img src="${imgSrc}" alt="${t.name}" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
+          <img src="${imgSrc}" loading="lazy" alt="${t.name}" class="img-fluid rounded mb-3" onerror="this.style.display='none'" />
           <h5 class="fw-semibold">${t.name}</h5>
           <p class="mb-1 text-muted">Lumachance: <strong>${(t.lumaChance || 0).toFixed(2)}%</strong></p>
           <p class="mb-1 text-muted">Rencontres: <strong>${(t.encounteredPercent * 100).toFixed(2)}%</strong></p>
