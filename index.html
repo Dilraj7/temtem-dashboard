@@ -45,19 +45,21 @@
     </div>
 
     <!-- 🔍 Recherche, tri et upload -->
-    <div class="mb-3">
-      <input type="text" id="searchInput" class="form-control" placeholder="🔍 Rechercher un Temtem...">
-    </div>
-    <div class="mb-3">
-      <label for="jsonUpload" class="form-label fw-semibold">📁 Charger vos données JSON :</label>
-      <input type="file" class="form-control" id="jsonUpload" accept=".json" />
-    </div>
-    <div class="d-flex flex-wrap gap-2 mb-4">
-      <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'desc')">🔽 Rencontres</button>
-      <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'asc')">🔼 Rencontres</button>
-    </div>
-    <div id="noResult" class="alert alert-warning d-none text-center">
-      Aucun Temtem ne correspond à votre recherche.
+    <div class="row g-3 mb-4">
+        <div class="col-md-6 mb-3">
+          <input type="text" id="searchInput" class="form-control" placeholder="🔍 Rechercher un Temtem...">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="jsonUpload" class="form-label fw-semibold">📁 Charger vos données JSON :</label>
+          <input type="file" class="form-control" id="jsonUpload" accept=".json" />
+        </div>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+          <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'desc')">🔽 Rencontres</button>
+          <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'asc')">🔼 Rencontres</button>
+        </div>
+        <div id="noResult" class="alert alert-warning d-none text-center">
+          Aucun Temtem ne correspond à votre recherche.
+        </div>
     </div>
 
     <!-- 🃏 Temtems & Donut -->
