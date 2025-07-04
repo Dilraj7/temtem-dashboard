@@ -165,6 +165,11 @@ function renderDashboard(data) {
               <span class="temtem-badge badge-time badge-purple-80">⏱ 80%: ${r80}</span>
               <span class="temtem-badge badge-time badge-purple-9999">⏱ 99.99%: ${r9999}</span>
             </div>
+            <div class="mt-3">
+              <button class="btn btn-warning btn-sm mark-luma-btn" data-name="${
+                t.name
+              }">✨ Luma trouvé</button>
+            </div>
           </div>
           <div class="temtem-flip-back glass card h-100 text-start p-3" data-name="${
             t.name
@@ -218,6 +223,16 @@ function renderDashboard(data) {
     });
 
     container.appendChild(col);
+    col.querySelector(".mark-luma-btn").addEventListener("click", () => {
+      const lumas = JSON.parse(localStorage.getItem("temtemLumas") || "[]");
+      if (!lumas.some(l => l.name === t.name)) {
+        lumas.push(t);
+        localStorage.setItem("temtemLumas", JSON.stringify(lumas));
+        alert(`✨ ${t.name} ajouté à vos Lumas capturés !`);
+      } else {
+        alert("⚠️ Ce Temtem est déjà enregistré comme Luma capturé.");
+      }
+    });
   });
 }
 
