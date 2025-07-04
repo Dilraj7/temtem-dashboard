@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Temtem</title>
+
+  <!-- Bootstrap & Chart.js -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body class="bg-light">
   <div class="container py-5">
@@ -16,7 +20,7 @@
       <p class="lead">Statistiques visuelles et épurées de vos données</p>
     </div>
 
-    <!-- Stats globales -->
+    <!-- 🧮 Stats globales -->
     <div class="row g-3 mb-4">
       <div class="col-sm-4">
         <div class="glass card p-3 text-center">
@@ -38,42 +42,42 @@
       </div>
     </div>
 
+    <!-- 🔍 Recherche, tri et upload -->
+    <div class="mb-3">
+      <input type="text" id="searchInput" class="form-control" placeholder="🔍 Rechercher un Temtem...">
+    </div>
+    <div class="mb-3">
+      <label for="jsonUpload" class="form-label fw-semibold">📁 Charger vos données JSON :</label>
+      <input type="file" class="form-control" id="jsonUpload" accept=".json" />
+    </div>
+    <div class="d-flex flex-wrap gap-2 mb-4">
+      <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'desc')">🔽 Rencontres</button>
+      <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'asc')">🔼 Rencontres</button>
+    </div>
+    <div id="noResult" class="alert alert-warning d-none text-center">
+      Aucun Temtem ne correspond à votre recherche.
+    </div>
 
+    <!-- 🃏 Temtems & Donut -->
     <div class="row g-3">
-  <!-- 🃏 Aperçu Temtem à gauche -->
-   <div class="mb-3">
-  <input type="text" id="searchInput" class="form-control" placeholder="🔍 Rechercher un Temtem...">
-</div>
-<div class="mb-3">
-  <label for="jsonUpload" class="form-label fw-semibold">📁 Charger vos données JSON :</label>
-  <input type="file" class="form-control" id="jsonUpload" accept=".json" class="form-control">
-</div>
-<div class="d-flex flex-wrap gap-2 mb-3">
-  <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'desc')">🔽 Rencontres</button>
-  <button class="btn btn-primary btn-sm" onclick="sortTemtems('encountered', 'asc')">🔼 Rencontres</button>
-  <div id="noResult" class="alert alert-warning d-none text-center mt-3">
-  Aucun Temtem ne correspond à votre recherche.
-</div>
-</div>
-
-  <div class="col-md-8">
-    <div class="row g-3" id="temtemCards"></div>
-  </div>
-
-  <!-- 🍩 Donut top 5 à droite -->
-  <div class="col-md-4">
-    <div class="glass card h-100">
-      <div class="card-body">
-        <h5 class="text-center">🥇 Top 5 Lumachance</h5>
-        <div class="glass card p-3 mb-3" id="donutCard">
-          <canvas id="lumachanceChart" height="160"></canvas>
+      <div class="col-md-8">
+        <div class="row g-3" id="temtemCards"></div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass card h-100">
+          <div class="card-body">
+            <h5 class="text-center">🥇 Top 5 Lumachance</h5>
+            <div class="glass card p-3 mb-3" id="donutCard">
+              <canvas id="lumachanceChart" height="160"></canvas>
+            </div>
+            <div id="donutLegend" class="d-flex flex-wrap justify-content-center gap-2 mt-3"></div>
+          </div>
         </div>
-        <div id="donutLegend" class="d-flex flex-wrap justify-content-center gap-2 mt-3"></div>
       </div>
     </div>
   </div>
-</div>
 
+  <!-- ✅ Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.6.2/countUp.umd.js"></script>
   <script src="dashboard.js"></script>
 </body>
