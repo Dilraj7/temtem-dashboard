@@ -20,6 +20,9 @@ document.getElementById("jsonUpload").addEventListener("change", function () {
 
 function renderDashboard(data) {
   const rows = data.rows;
+  const savedLumas = JSON.parse(localStorage.getItem("temtemLumas") || "[]");
+  const capturedNames = savedLumas.map((l) => l.name);
+
 
   // Reset
   document.getElementById("temtemCards").innerHTML = "";
@@ -138,7 +141,9 @@ function renderDashboard(data) {
 
   const container = document.getElementById("temtemCards");
 
-  rows.forEach((t) => {
+  // Vérifie si le Temtem est capturé
+  const rowsToRender = rows.filter((t) => !capturedNames.includes(t.name));
+  rowsToRender.forEach((t) => {
     const col = document.createElement("div");
     col.className = "col-12 col-md-6 col-lg-4 mb-4";
     const imgSrc = `img/${t.name.toLowerCase()}.png`;
@@ -169,11 +174,6 @@ function renderDashboard(data) {
               <span class="temtem-badge badge-time badge-purple-50">⏱ 50%: ${r50}</span>
               <span class="temtem-badge badge-time badge-purple-80">⏱ 80%: ${r80}</span>
               <span class="temtem-badge badge-time badge-purple-9999">⏱ 99.99%: ${r9999}</span>
-            </div>
-            <div class="mt-3">
-              <button class="btn btn-warning btn-sm mark-luma-btn" data-name="${
-                t.name
-              }">✨ Luma trouvé</button>
             </div>
           </div>
           <div class="temtem-flip-back glass card h-100 text-start p-3" data-name="${
