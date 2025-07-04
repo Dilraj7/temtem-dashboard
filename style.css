@@ -110,7 +110,7 @@ canvas {
 
 .temtem-flip-card {
   perspective: 1000px;
-  min-height: 340px;
+  min-height: 360px;
   position: relative;
 }
 
