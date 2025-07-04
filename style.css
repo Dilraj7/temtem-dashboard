@@ -109,35 +109,55 @@ canvas {
 }
 
 .temtem-flip-card {
+  perspective: 1000px;
+  min-height: 340px;
   position: relative;
-  min-height: 300px; /* ou ajuste selon ton contenu */
 }
+
 .temtem-flip-card .card {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border: none;
+  padding: 1.5rem !important;
 }
 
 .temtem-flip-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
   transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 .temtem-flip-card.flipped .temtem-flip-inner {
   transform: rotateY(180deg);
 }
+
 .temtem-flip-front,
 .temtem-flip-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: inherit;
+  border-radius: 0.5rem;
+  overflow-y: auto;
 }
+
+.temtem-flip-front {
+  z-index: 2;
+}
+
 .temtem-flip-back {
   transform: rotateY(180deg);
-  overflow-y: auto;
+  z-index: 1;
+}
+
+.temtem-flip-card .card {
+  height: 100%;
+}
+
+/* 💫 Optionnel : effet au survol */
+.temtem-flip-card:hover {
+  filter: brightness(1.02);
+  transition: filter 0.3s ease;
 }
 
 

@@ -90,7 +90,7 @@ fetch("data.json")
 
     rows.forEach((t) => {
       const col = document.createElement("div");
-      col.className = "col-sm-6 col-md-4 col-lg-3";
+      col.className = "col-12 col-md-6 col-lg-4 mb-4";
       const imgSrc = `img/${t.name.toLowerCase()}.png`;
 
       const p = 1 / 2000;
