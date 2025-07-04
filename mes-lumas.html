@@ -52,7 +52,7 @@
       <a href="index.html" class="btn btn-outline-primary btn-sm mt-2">← Retour au dashboard</a>
     </div>
 
-    <div id="lumaList" class="row g-4"></div>
+    <div id="lumaList" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
   </div>
 
   <script>
@@ -71,10 +71,10 @@
     } else {
       lumas.forEach(t => {
         const col = document.createElement("div");
-        col.className = "col-sm-6 col-lg-4";
+        col.className = "col-sm-6 col-lg-4 h-100";
 
         col.innerHTML = `
-          <div class="glass card text-center p-3 luma-card">
+          <div class="glass card text-center p-3 luma-card h-100">
             <div class="position-absolute top-0 end-0 p-2">
               <button class="btn btn-sm btn-outline-danger remove-btn" title="Supprimer ce Luma">🗑</button>
             </div>
