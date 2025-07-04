@@ -49,13 +49,9 @@ function renderDashboard(data) {
   const avgLuma =
     (rows.reduce((sum, t) => sum + (t.lumaChance || 0), 0) / rows.length) * 100;
 
-  new CountUp("totalTemtems", totalTemtems, { duration: 1.5 }).start();
-  new CountUp("totalEncounters", totalEncounters, { duration: 1.8 }).start();
-  new CountUp("avgLuma", avgLuma, {
-    duration: 2,
-    decimalPlaces: 2,
-    suffix: " %",
-  }).start();
+  document.getElementById("totalTemtems").textContent = totalTemtems;
+  document.getElementById("totalEncounters").textContent = totalEncounters;
+  document.getElementById("avgLuma").textContent = avgLuma.toFixed(2) + " %";
 
   // Top 5
   const top5 = [...rows]
