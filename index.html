@@ -79,6 +79,14 @@
 
   <!-- ✅ Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/countup.js@2.6.2/dist/countUp.umd.js"></script>
-  <script src="dashboard.js"></script>
+<script>
+  // Attend que CountUp soit chargé avant de lancer ton JS
+  window.addEventListener("DOMContentLoaded", () => {
+    const script = document.createElement("script");
+    script.src = "dashboard.js";
+    document.body.appendChild(script);
+  });
+</script>
+
 </body>
 </html>
