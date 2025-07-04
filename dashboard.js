@@ -29,7 +29,12 @@ function renderDashboard(data) {
   const canvas = document.createElement("canvas");
   canvas.id = "lumachanceChart";
   canvas.height = 160;
-  document.querySelector(".glass.card canvas")?.replaceWith(canvas);
+  const oldCanvas = document.querySelector(".glass.card canvas");
+  if (oldCanvas) {
+    oldCanvas.replaceWith(canvas);
+  } else {
+    document.querySelector(".glass.card")?.appendChild(canvas);
+  }
 
   // Stats globales
   document.getElementById("totalTemtems").textContent = rows.length;
@@ -70,7 +75,13 @@ function renderDashboard(data) {
       datasets: [
         {
           data: top5.map((t) => t.lumaChance * 100),
-          backgroundColor: ["#e67e22", "#f1c40f", "#1abc9c", "#9b59b6", "#e74c3c"],
+          backgroundColor: [
+            "#e67e22",
+            "#f1c40f",
+            "#1abc9c",
+            "#9b59b6",
+            "#e74c3c",
+          ],
         },
       ],
     },
@@ -85,7 +96,12 @@ function renderDashboard(data) {
     return (probability * 100).toFixed(2);
   }
 
-  function getEstimatedTimeRemaining(n, targetProb, encounterRate = 1, p = 1 / 2000) {
+  function getEstimatedTimeRemaining(
+    n,
+    targetProb,
+    encounterRate = 1,
+    p = 1 / 2000
+  ) {
     const totalRequired = Math.log(1 - targetProb) / Math.log(1 - p);
     const remaining = Math.max(0, totalRequired - n);
     return Math.round(remaining * encounterRate);
@@ -96,7 +112,10 @@ function renderDashboard(data) {
     const h = Math.floor(sec / 3600);
     const m = Math.floor((sec % 3600) / 60);
     const s = sec % 60;
-    return `${h}h ${String(m).padStart(2, "0")}m ${String(s).padStart(2, "0")}s`;
+    return `${h}h ${String(m).padStart(2, "0")}m ${String(s).padStart(
+      2,
+      "0"
+    )}s`;
   }
 
   document.getElementById("searchInput").addEventListener("input", function () {
@@ -131,13 +150,17 @@ function renderDashboard(data) {
             <h5 class="fw-semibold">${t.name}</h5>
             <div class="d-flex flex-wrap justify-content-center mt-2">
               <span class="temtem-badge badge-luma">✨ ${currentChance}%</span>
-              <span class="temtem-badge badge-encounter">👁 ${(t.encounteredPercent * 100).toFixed(2)}%</span>
+              <span class="temtem-badge badge-encounter">👁 ${(
+                t.encounteredPercent * 100
+              ).toFixed(2)}%</span>
               <span class="temtem-badge badge-time badge-purple-50">⏱ 50%: ${r50}</span>
               <span class="temtem-badge badge-time badge-purple-80">⏱ 80%: ${r80}</span>
               <span class="temtem-badge badge-time badge-purple-9999">⏱ 99.99%: ${r9999}</span>
             </div>
           </div>
-          <div class="temtem-flip-back glass card h-100 text-start p-3" data-name="${t.name}">
+          <div class="temtem-flip-back glass card h-100 text-start p-3" data-name="${
+            t.name
+          }">
             <div class="loading-info text-muted">⏳ Chargement...</div>
           </div>
         </div>
@@ -152,10 +175,22 @@ function renderDashboard(data) {
 
       if (!back.dataset.loaded) {
         try {
-          const res = await fetch(`https://temtem-api.mael.tech/api/temtems?names=${encodeURIComponent(name)}&weaknesses=true`);
+          const res = await fetch(
+            `https://temtem-api.mael.tech/api/temtems?names=${encodeURIComponent(
+              name
+            )}&weaknesses=true`
+          );
           const [tem] = await res.json();
-          const types = tem.types.map(type => `<span class="badge bg-secondary me-1">${type}</span>`).join('');
-          const trivia = tem.trivia?.slice(0, 2).map(t => `• ${t}`).join('<br>') || "Aucune anecdote trouvée.";
+          const types = tem.types
+            .map(
+              (type) => `<span class="badge bg-secondary me-1">${type}</span>`
+            )
+            .join("");
+          const trivia =
+            tem.trivia
+              ?.slice(0, 2)
+              .map((t) => `• ${t}`)
+              .join("<br>") || "Aucune anecdote trouvée.";
 
           back.innerHTML = `
             <h6 class="fw-bold mb-2">📘 Détails</h6>
