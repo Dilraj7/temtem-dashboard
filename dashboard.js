@@ -254,7 +254,7 @@ function renderDashboard(data) {
       localStorage.setItem("temtemLumas", JSON.stringify(lumas));
     });
 
-}
+},
 
 // 🔁 Fonction de tri globale
 function sortTemtems(field, order) {
