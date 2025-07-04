@@ -33,10 +33,10 @@ h6, h5, h3 {
 
 
 .glass.card {
-  background: #302f3d;
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
-  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  color: #fff; /* forcer blanc au besoin */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
