@@ -30,21 +30,42 @@ function renderDashboard(data) {
   canvas.id = "lumachanceChart";
   canvas.height = 160;
   const oldCanvas = document.getElementById("lumachanceChart");
-if (oldCanvas) {
-  oldCanvas.replaceWith(canvas);
-} else {
-  document.getElementById("donutCard")?.appendChild(canvas);
-}
-
+  if (oldCanvas) {
+    oldCanvas.replaceWith(canvas);
+  } else {
+    document.getElementById("donutCard")?.appendChild(canvas);
+  }
 
   // Stats globales
-  document.getElementById("totalTemtems").textContent = rows.length;
-  const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
+  /*document.getElementById("totalTemtems").textContent = rows.length;
+  //const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
   document.getElementById("totalEncounters").textContent = totalEncounters;
 
   const avgLuma =
     (rows.reduce((sum, t) => sum + (t.lumaChance || 0), 0) / rows.length) * 100;
-  document.getElementById("avgLuma").textContent = avgLuma.toFixed(2) + " %";
+  document.getElementById("avgLuma").textContent = avgLuma.toFixed(2) + " %";*/
+  const countTemtems = new CountUp.CountUp("totalTemtems", rows.length, {
+    duration: 1.5,
+    useEasing: true,
+  });
+  const countEncounters = new CountUp.CountUp(
+    "totalEncounters",
+    totalEncounters,
+    {
+      duration: 1.8,
+      useEasing: true,
+    }
+  );
+  const countAvgLuma = new CountUp.CountUp("avgLuma", avgLuma, {
+    duration: 2,
+    decimalPlaces: 2,
+    suffix: " %",
+    useEasing: true,
+  });
+
+  countTemtems.start();
+  countEncounters.start();
+  countAvgLuma.start();
 
   // Top 5
   const top5 = [...rows]
