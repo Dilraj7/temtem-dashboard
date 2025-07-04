@@ -44,28 +44,18 @@ function renderDashboard(data) {
   const avgLuma =
     (rows.reduce((sum, t) => sum + (t.lumaChance || 0), 0) / rows.length) * 100;
   document.getElementById("avgLuma").textContent = avgLuma.toFixed(2) + " %";*/
-  const countTemtems = new CountUp("totalTemtems", rows.length, {
-    duration: 1.5,
-    useEasing: true,
-  });
-  const countEncounters = new CountUp(
-    "totalEncounters",
-    totalEncounters,
-    {
-      duration: 1.8,
-      useEasing: true,
-    }
-  );
-  const countAvgLuma = new CountUp("avgLuma", avgLuma, {
+  const totalTemtems = rows.length;
+  const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
+  const avgLuma =
+    (rows.reduce((sum, t) => sum + (t.lumaChance || 0), 0) / rows.length) * 100;
+
+  new CountUp("totalTemtems", totalTemtems, { duration: 1.5 }).start();
+  new CountUp("totalEncounters", totalEncounters, { duration: 1.8 }).start();
+  new CountUp("avgLuma", avgLuma, {
     duration: 2,
     decimalPlaces: 2,
     suffix: " %",
-    useEasing: true,
-  });
-
-  countTemtems.start();
-  countEncounters.start();
-  countAvgLuma.start();
+  }).start();
 
   // Top 5
   const top5 = [...rows]
