@@ -1,1 +1,271 @@
-{"rows":[{"name":"Minttle","encountered":1539,"lumaChance":0.53684450509414527,"encounteredPercent":0.3452995288310523,"timeToLuma":530622091},{"name":"Mosu","encountered":495,"lumaChance":0.21929810272245676,"encounteredPercent":0.11106125196320395,"timeToLuma":1751804903},{"name":"Venx","encountered":4,"lumaChance":0.0019985004999373279,"encounteredPercent":0.00089746466232892082,"timeToLuma":222725361000},{"name":"Hazrat","encountered":20,"lumaChance":0.0099526421976703361,"encounteredPercent":0.0044873233116446039,"timeToLuma":44506362600},{"name":"Saipat","encountered":5,"lumaChance":0.0024975012496872839,"encounteredPercent":0.001121830827911151,"timeToLuma":218336049000},{"name":"Molgu","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1075712225000},{"name":"Shaolant","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1075712225000},{"name":"Pocus","encountered":2,"lumaChance":0.000999749999999855,"encounteredPercent":0.00044873233116446041,"timeToLuma":763508889000},{"name":"Reval","encountered":11,"lumaChance":0.0054862706043887766,"encounteredPercent":0.0024680278214045323,"timeToLuma":99567703636},{"name":"Maoala","encountered":18,"lumaChance":0.00896185180901643,"encounteredPercent":0.004038590980480144,"timeToLuma":62010459000},{"name":"Owlhe","encountered":5,"lumaChance":0.0024975012496872839,"encounteredPercent":0.001121830827911151,"timeToLuma":345504508200},{"name":"Thaiko","encountered":6,"lumaChance":0.002996252499062324,"encounteredPercent":0.0013461969934933811,"timeToLuma":186152715000},{"name":"Towly","encountered":2,"lumaChance":0.000999749999999855,"encounteredPercent":0.00044873233116446041,"timeToLuma":556369803000},{"name":"0b1","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1103297895000},{"name":"Oree","encountered":2,"lumaChance":0.000999749999999855,"encounteredPercent":0.00044873233116446041,"timeToLuma":573163371000},{"name":"Paharac","encountered":398,"lumaChance":0.18049089185533906,"encounteredPercent":0.089297733901727613,"timeToLuma":4308248668},{"name":"Chubee","encountered":1447,"lumaChance":0.94480582543241032,"encounteredPercent":0.32465784159748712,"timeToLuma":205563833},{"name":"Rhoulder","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1126003590000},{"name":"Pigepic","encountered":383,"lumaChance":0.17431991845570693,"encounteredPercent":0.08593224141799416,"timeToLuma":4439131347},{"name":"Mouflank","encountered":2,"lumaChance":0.000999749999999855,"encounteredPercent":0.00044873233116446041,"timeToLuma":874066545000},{"name":"Paharo","encountered":2,"lumaChance":0.000999749999999855,"encounteredPercent":0.00044873233116446041,"timeToLuma":577987839000},{"name":"Fomu","encountered":5,"lumaChance":0.0024975012496872839,"encounteredPercent":0.001121830827911151,"timeToLuma":350972575200},{"name":"Raican","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1156038455000},{"name":"Goty","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1516843550000},{"name":"Loali","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1568074080000},{"name":"Zaobian","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1568074080000},{"name":"Umishi","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1733698590000},{"name":"Osukan","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1748228025000},{"name":"Nessla","encountered":2,"lumaChance":0.000999749999999855,"encounteredPercent":0.00044873233116446041,"timeToLuma":875871117000},{"name":"Piraniant","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1749903790000},{"name":"Ukama","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1750971860000},{"name":"Koish","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1752132005000},{"name":"Tuwai","encountered":4,"lumaChance":0.0019985004999373279,"encounteredPercent":0.00089746466232892082,"timeToLuma":451015749000},{"name":"Hocus","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1753715695000},{"name":"Shaolite","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1753715695000},{"name":"Platimous","encountered":89,"lumaChance":0.043535044186457927,"encounteredPercent":0.019968588736818487,"timeToLuma":20246598808},{"name":"Swali","encountered":1,"lumaChance":0.00049999999999994493,"encounteredPercent":0.0002243661655822302,"timeToLuma":1802865330000}],"total":{"name":"Total","encountered":4457,"lumaChance":0.89237015617874738,"encounteredPercent":1.0,"timeToLuma":307937356},"timer":{"temtemCount":4457,"durationTime":98348000}}
+{
+  "rows": [
+    {
+      "name": "Minttle",
+      "encountered": 1539,
+      "lumaChance": 0.53684450509414527,
+      "encounteredPercent": 0.3452995288310523,
+      "timeToLuma": 530622091
+    },
+    {
+      "name": "Mosu",
+      "encountered": 495,
+      "lumaChance": 0.21929810272245676,
+      "encounteredPercent": 0.11106125196320395,
+      "timeToLuma": 1751804903
+    },
+    {
+      "name": "Venx",
+      "encountered": 4,
+      "lumaChance": 0.0019985004999373279,
+      "encounteredPercent": 0.00089746466232892082,
+      "timeToLuma": 222725361000
+    },
+    {
+      "name": "Hazrat",
+      "encountered": 20,
+      "lumaChance": 0.0099526421976703361,
+      "encounteredPercent": 0.0044873233116446039,
+      "timeToLuma": 44506362600
+    },
+    {
+      "name": "Saipat",
+      "encountered": 5,
+      "lumaChance": 0.0024975012496872839,
+      "encounteredPercent": 0.001121830827911151,
+      "timeToLuma": 218336049000
+    },
+    {
+      "name": "Molgu",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1075712225000
+    },
+    {
+      "name": "Shaolant",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1075712225000
+    },
+    {
+      "name": "Pocus",
+      "encountered": 2,
+      "lumaChance": 0.000999749999999855,
+      "encounteredPercent": 0.00044873233116446041,
+      "timeToLuma": 763508889000
+    },
+    {
+      "name": "Reval",
+      "encountered": 11,
+      "lumaChance": 0.0054862706043887766,
+      "encounteredPercent": 0.0024680278214045323,
+      "timeToLuma": 99567703636
+    },
+    {
+      "name": "Maoala",
+      "encountered": 18,
+      "lumaChance": 0.00896185180901643,
+      "encounteredPercent": 0.004038590980480144,
+      "timeToLuma": 62010459000
+    },
+    {
+      "name": "Owlhe",
+      "encountered": 5,
+      "lumaChance": 0.0024975012496872839,
+      "encounteredPercent": 0.001121830827911151,
+      "timeToLuma": 345504508200
+    },
+    {
+      "name": "Thaiko",
+      "encountered": 6,
+      "lumaChance": 0.002996252499062324,
+      "encounteredPercent": 0.0013461969934933811,
+      "timeToLuma": 186152715000
+    },
+    {
+      "name": "Towly",
+      "encountered": 2,
+      "lumaChance": 0.000999749999999855,
+      "encounteredPercent": 0.00044873233116446041,
+      "timeToLuma": 556369803000
+    },
+    {
+      "name": "0b1",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1103297895000
+    },
+    {
+      "name": "Oree",
+      "encountered": 2,
+      "lumaChance": 0.000999749999999855,
+      "encounteredPercent": 0.00044873233116446041,
+      "timeToLuma": 573163371000
+    },
+    {
+      "name": "Paharac",
+      "encountered": 398,
+      "lumaChance": 0.18049089185533906,
+      "encounteredPercent": 0.089297733901727613,
+      "timeToLuma": 4308248668
+    },
+    {
+      "name": "Chubee",
+      "encountered": 1447,
+      "lumaChance": 0.94480582543241032,
+      "encounteredPercent": 0.32465784159748712,
+      "timeToLuma": 205563833
+    },
+    {
+      "name": "Rhoulder",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1126003590000
+    },
+    {
+      "name": "Pigepic",
+      "encountered": 383,
+      "lumaChance": 0.17431991845570693,
+      "encounteredPercent": 0.08593224141799416,
+      "timeToLuma": 4439131347
+    },
+    {
+      "name": "Mouflank",
+      "encountered": 2,
+      "lumaChance": 0.000999749999999855,
+      "encounteredPercent": 0.00044873233116446041,
+      "timeToLuma": 874066545000
+    },
+    {
+      "name": "Paharo",
+      "encountered": 2,
+      "lumaChance": 0.000999749999999855,
+      "encounteredPercent": 0.00044873233116446041,
+      "timeToLuma": 577987839000
+    },
+    {
+      "name": "Fomu",
+      "encountered": 5,
+      "lumaChance": 0.0024975012496872839,
+      "encounteredPercent": 0.001121830827911151,
+      "timeToLuma": 350972575200
+    },
+    {
+      "name": "Raican",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1156038455000
+    },
+    {
+      "name": "Goty",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1516843550000
+    },
+    {
+      "name": "Loali",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1568074080000
+    },
+    {
+      "name": "Zaobian",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1568074080000
+    },
+    {
+      "name": "Umishi",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1733698590000
+    },
+    {
+      "name": "Osukan",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1748228025000
+    },
+    {
+      "name": "Nessla",
+      "encountered": 2,
+      "lumaChance": 0.000999749999999855,
+      "encounteredPercent": 0.00044873233116446041,
+      "timeToLuma": 875871117000
+    },
+    {
+      "name": "Piraniant",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1749903790000
+    },
+    {
+      "name": "Ukama",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1750971860000
+    },
+    {
+      "name": "Koish",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1752132005000
+    },
+    {
+      "name": "Tuwai",
+      "encountered": 4,
+      "lumaChance": 0.0019985004999373279,
+      "encounteredPercent": 0.00089746466232892082,
+      "timeToLuma": 451015749000
+    },
+    {
+      "name": "Hocus",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1753715695000
+    },
+    {
+      "name": "Shaolite",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1753715695000
+    },
+    {
+      "name": "Platimous",
+      "encountered": 89,
+      "lumaChance": 0.043535044186457927,
+      "encounteredPercent": 0.019968588736818487,
+      "timeToLuma": 20246598808
+    },
+    {
+      "name": "Swali",
+      "encountered": 1,
+      "lumaChance": 0.00049999999999994493,
+      "encounteredPercent": 0.0002243661655822302,
+      "timeToLuma": 1802865330000
+    }
+  ],
+  "total": {
+    "name": "Total",
+    "encountered": 4457,
+    "lumaChance": 0.89237015617874738,
+    "encounteredPercent": 1.0,
+    "timeToLuma": 307937356
+  },
+  "timer": { "temtemCount": 4457, "durationTime": 98348000 }
+}
