@@ -1,6 +1,6 @@
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at top left, #e48992, #e48992);
+  background: radial-gradient(circle at top left, #000000, #e48992);
   color: #ffffff;
 }
 
@@ -166,3 +166,11 @@ canvas {
 }
 
 
+img[src*="logo-temtem-dashboard"] {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+img[src*="logo-temtem-dashboard"]:hover {
+  transform: scale(1.04);
+}
