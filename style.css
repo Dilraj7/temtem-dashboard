@@ -174,3 +174,12 @@ img[src*="logo-temtem-dashboard"] {
 img[src*="logo-temtem-dashboard"]:hover {
   transform: scale(1.04);
 }
+
+.mark-luma-icon {
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+}

@@ -153,6 +153,11 @@ function renderDashboard(data) {
       <div class="temtem-flip-card h-100">
         <div class="temtem-flip-inner h-100">
           <div class="temtem-flip-front glass card h-100 text-center p-3">
+            <div class="position-absolute top-0 end-0 p-2">
+              <button class="btn btn-sm btn-outline-warning mark-luma-icon" title="Marquer comme Luma">
+                ✨
+              </button>
+            </div>
             <img src="${imgSrc}" loading="lazy" alt="${t.name}" 
               class="img-fluid rounded mb-3" onerror="this.src='img/placeholder.png'" />
             <h5 class="fw-semibold">${t.name}</h5>
@@ -223,17 +228,32 @@ function renderDashboard(data) {
     });
 
     container.appendChild(col);
-    col.querySelector(".mark-luma-btn").addEventListener("click", () => {
-      const lumas = JSON.parse(localStorage.getItem("temtemLumas") || "[]");
-      if (!lumas.some(l => l.name === t.name)) {
+    const lumaIcon = col.querySelector(".mark-luma-icon");
+    const savedLumas = JSON.parse(localStorage.getItem("temtemLumas") || "[]");
+
+    const isCaptured = savedLumas.some((l) => l.name === t.name);
+    if (isCaptured) {
+      lumaIcon.classList.add("btn-warning");
+      lumaIcon.classList.remove("btn-outline-warning");
+    }
+
+    lumaIcon.addEventListener("click", () => {
+      let lumas = JSON.parse(localStorage.getItem("temtemLumas") || "[]");
+      const index = lumas.findIndex((l) => l.name === t.name);
+
+      if (index === -1) {
         lumas.push(t);
-        localStorage.setItem("temtemLumas", JSON.stringify(lumas));
-        alert(`✨ ${t.name} ajouté à vos Lumas capturés !`);
+        lumaIcon.classList.add("btn-warning");
+        lumaIcon.classList.remove("btn-outline-warning");
       } else {
-        alert("⚠️ Ce Temtem est déjà enregistré comme Luma capturé.");
+        lumas.splice(index, 1);
+        lumaIcon.classList.remove("btn-warning");
+        lumaIcon.classList.add("btn-outline-warning");
       }
+
+      localStorage.setItem("temtemLumas", JSON.stringify(lumas));
     });
-  });
+
 }
 
 // 🔁 Fonction de tri globale
