@@ -44,11 +44,11 @@ function renderDashboard(data) {
   const avgLuma =
     (rows.reduce((sum, t) => sum + (t.lumaChance || 0), 0) / rows.length) * 100;
   document.getElementById("avgLuma").textContent = avgLuma.toFixed(2) + " %";*/
-  const countTemtems = new CountUp.CountUp("totalTemtems", rows.length, {
+  const countTemtems = new CountUp("totalTemtems", rows.length, {
     duration: 1.5,
     useEasing: true,
   });
-  const countEncounters = new CountUp.CountUp(
+  const countEncounters = new CountUp(
     "totalEncounters",
     totalEncounters,
     {
@@ -56,7 +56,7 @@ function renderDashboard(data) {
       useEasing: true,
     }
   );
-  const countAvgLuma = new CountUp.CountUp("avgLuma", avgLuma, {
+  const countAvgLuma = new CountUp("avgLuma", avgLuma, {
     duration: 2,
     decimalPlaces: 2,
     suffix: " %",
