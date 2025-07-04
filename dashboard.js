@@ -1,9 +1,36 @@
 fetch("data.json")
-  .then((res) => res.json())
-  .then((data) => {
-    const rows = data.rows;
+  .then(res => res.json())
+  .then(data => renderDashboard(data));
 
-    // Stats globales
+  document.getElementById("jsonUpload").addEventListener("change", function () {
+  const file = this.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const jsonData = JSON.parse(e.target.result);
+      renderDashboard(jsonData);
+    } catch (err) {
+      alert("❌ Erreur : le fichier n'est pas un JSON valide.");
+    }
+  };
+  reader.readAsText(file);
+});
+
+function renderDashboard(data) {
+  const rows = data.rows;
+  
+document.getElementById("temtemCards").innerHTML = "";
+document.getElementById("donutLegend").innerHTML = "";
+document.getElementById("lumachanceChart").remove();
+
+const canvas = document.createElement("canvas");
+canvas.id = "lumachanceChart";
+canvas.height = 160;
+document.querySelector(".glass.card canvas").replaceWith(canvas);
+
+      // Stats globales
     document.getElementById("totalTemtems").textContent = rows.length;
     const totalEncounters = rows.reduce((sum, t) => sum + t.encountered, 0);
     document.getElementById("totalEncounters").textContent = totalEncounters;
@@ -156,7 +183,7 @@ fetch("data.json")
       container.appendChild(col);
     });
 
-  }); // 👈 Fin du fetch
+  }; // 👈 Fin du fetch
 
 // 🔁 Fonction de tri globale
 function sortTemtems(field, order) {
