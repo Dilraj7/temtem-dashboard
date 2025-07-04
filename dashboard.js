@@ -29,12 +29,13 @@ function renderDashboard(data) {
   const canvas = document.createElement("canvas");
   canvas.id = "lumachanceChart";
   canvas.height = 160;
-  const oldCanvas = document.querySelector(".glass.card canvas");
-  if (oldCanvas) {
-    oldCanvas.replaceWith(canvas);
-  } else {
-    document.querySelector(".glass.card")?.appendChild(canvas);
-  }
+  const oldCanvas = document.getElementById("lumachanceChart");
+if (oldCanvas) {
+  oldCanvas.replaceWith(canvas);
+} else {
+  document.getElementById("donutCard")?.appendChild(canvas);
+}
+
 
   // Stats globales
   document.getElementById("totalTemtems").textContent = rows.length;

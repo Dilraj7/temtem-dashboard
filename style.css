@@ -160,5 +160,9 @@ canvas {
   transition: filter 0.3s ease;
 }
 
+#donutCard {
+  flex-shrink: 0;
+  max-width: 100%;
+}
 
 
